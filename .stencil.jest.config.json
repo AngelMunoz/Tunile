@@ -1,0 +1,24 @@
+{
+  "rootDir": "/home/daniel/Documents/github/Tunile",
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "json"
+  ],
+  "testPathIgnorePatterns": [
+    "/home/daniel/Documents/github/Tunile/.vscode",
+    "/home/daniel/Documents/github/Tunile/.stencil",
+    "/home/daniel/Documents/github/Tunile/node_modules",
+    "/home/daniel/Documents/github/Tunile/dist",
+    "/home/daniel/Documents/github/Tunile/www"
+  ],
+  "setupTestFrameworkScriptFile": "/home/daniel/Documents/github/Tunile/node_modules/@stencil/core/testing/jest.setuptest.js",
+  "testEnvironment": "/home/daniel/Documents/github/Tunile/node_modules/@stencil/core/testing/jest.environment.js",
+  "testMatch": [
+    "**/+(*.)+(e2e).+(ts|tsx|js)?(x)"
+  ],
+  "transform": {
+    "^.+\\.(ts|tsx)$": "/home/daniel/Documents/github/Tunile/node_modules/@stencil/core/testing/jest.preprocessor.js"
+  }
+}

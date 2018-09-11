@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+  <script src="/build/tunile.js"></script>
+
+</head>
+
+<body>
+
+  <tun-split-view>
+    <div slot="nav">
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+      <li>D</li>
+      <li>E</li>
+    </div>
+    <div slot="nav">
+      <li>A</li>
+      <li>B</li>
+      <li>C</li>
+      <li>D</li>
+      <li>E</li>
+    </div>
+    <section>
+      The rest of your lame content
+    </section>
+  </tun-split-view>
+
+</body>
+<script>
+  const el = document.querySelector('tun-split-view');
+</script>
+
+</html>

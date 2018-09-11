@@ -1,0 +1,39 @@
+{
+  "name": "tunile",
+  "version": "0.0.1",
+  "description": "Tunile Web Components",
+  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec",
+    "test:watch": "stencil test --spec --watch",
+    "test:e2e": "stencil test --e2e",
+    "test:e2e:watch": "stencil test --e2e --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@stencil/core": "^0.13.0-8",
+    "@stencil/sass": "^0.1.0",
+    "@types/jest": "^23.3.1",
+    "jest": "^23.4.2",
+    "puppeteer": "1.7.0",
+    "stencil": "^0.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelMunoz/Tunile.git"
+  },
+  "author": "Ionic Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AngelMunoz/Tunile"
+  },
+  "homepage": "https://github.com/AngelMunoz/Tunile"
+}
