@@ -1,50 +1,106 @@
 
 :host {
-  min-height: 100vh;
-  width: 100%;
   display: flex;
+  --tun-split-view-min-height: 100vh;
+  --tun-split-view-width:  100%;
   
   --primary-bg: #000000;
   
-  --nav-bg-color: #1c1c1c;
-  --nav-color: #c1c1c1;
-  --content-bg-color: #c1c1c1;
-  --content-color: #1c1c1c;
+  --nav-bg-color: #c1c1c1;
+  --nav-color: #1c1c1c;
+
+  --content-bg-color: #1c1c1c;
+  --content-color: #c1c1c1;
+
+  --nav-menu-size: 24px;
+  --nav-menu-glyph: "\2630";
   
-  --nav-width-closed: 5vw;
-  --nav-width-open: 40vw;
+  --nav-width-closed: 45px;
+  --nav-width-open: 310px;
+
+  --tun-nav-item-height-closed: 45px;
+  --tun-nav-item-width-closed: 45px;
+
+  --tun-nav-item-height-open: var(--tun-nav-item-height-closed);
+  --tun-nav-item-width-open: 100%;
   
+  min-height: var(--tun-split-view-min-height);
+  width: var(--tun-split-view-width);
 }
 
 .tun-split-view {
   display: flex;
   flex-direction: row;
   background-color: var(--primary-bg);
-  width: 100%;
+  width: var(--tun-split-view-width);
 
   .tun-split-view__nav {
     display: flex;
+    position: absolute;
     flex-direction: column;
     height: 100%;
-    position: absolute;
     left: 0;
-    background-color: var(--nav-color);
+    background-color: var(--nav-bg-color);
+    color: var(--nav-color);
     width: var(--nav-width-closed);
+
+    .tun-split-view__nav-li__menu {
+      list-style: none;
+      text-align: center;
+      &:before {
+        content: var(--nav-menu-glyph);
+        font-size: var(--nav-menu-size);
+        color: var(--nav-color);
+      }
+    }
+
+    .tun-split-view__nav-li,
+    .tun-split-view__nav-a {
+      text-align: center;
+      list-style: none;
+      height: var(--tun-nav-item-height-closed);
+      width: var(--tun-nav-item-width-closed);
+    }
+    
 
     &.is-open {
       width: var(--nav-width-open);
+      .tun-split-view__nav-li,
+      .tun-split-view__nav-a {
+        margin: 0.5em;
+        text-align: left;
+        list-style: none;
+        height: var(--tun-nav-item-height-open);
+        width: var(--tun-nav-item-width-open);
+      }
     }
-
+    
     &.is-right {
       left: unset;
       right: 0;
     }
+
   }
   
   .tun-split-view__content {
     width: 100%;
+    padding-left: var(--nav-width-closed);
+    background-color: var(--content-bg-color);
+    color: var(--content-color);
     &.is-open {
+      @media all and (min-width: 768px){
+        padding-left: var(--nav-width-open);
+      }
+    }
 
+    &.is-right {
+      padding-left: 0;
+      padding-right: var(--nav-width-closed);
+      &.is-open {
+        @media all and (min-width: 768px){
+          padding-right: var(--nav-width-open);
+        }
+      }
     }
   }
 }

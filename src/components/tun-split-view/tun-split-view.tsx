@@ -1,13 +1,15 @@
-import { Component, Prop, Element, Watch, Method } from '@stencil/core';
+import { Component, Prop, Element, Method } from '@stencil/core';
+import { TunNavitem } from '../../interfaces';
 
 @Component({
   tag: 'tun-split-view',
   styleUrl: 'tun-split-view.scss',
-  shadow: true
+  shadow: true,
 })
 export class TunSplitView {
   @Prop({ mutable: true }) isOpen: boolean = false;
   @Prop({ reflectToAttr: true, mutable: true }) position: 'left' | 'right' = 'left';
+  @Prop() navItems: TunNavitem[] = [];
 
   @Element() tunSplitView: HTMLTunSplitViewElement;
 
@@ -17,43 +19,30 @@ export class TunSplitView {
   render() {
     return (
       <article class="tun-split-view">
-        <nav class="tun-split-view__nav" ref={nav => this.nav = nav}>
-          <slot name="nav"></slot>
+        <nav class={`tun-split-view__nav ${this.isOpen ? 'is-open' : ''} ${this.position === 'right' ? 'is-right' : ''}`} ref={nav => this.nav = nav}>
+          <li onClick={this.toggleMenu.bind(this)} class="tun-split-view__nav-li__menu">
+            {this.isOpen ? <slot name="menu-title">Menu</slot> : ''}
+          </li>
+          {
+            this.navItems.map(
+              (item, i) =>
+                <li onClick={item.onClick ? item.onClick : null} class="tun-split-view__nav-li">
+                  <slot name={`${i}`}></slot>&nbsp;
+                  <a class="tun-split-view__nav-a">{this.isOpen ? <span>{item.label}</span> : ''}</a>
+                </li>
+            )
+          }
         </nav>
-        <main class="tun-split-view__content" ref={main => this.main = main}>
+        <main class={`tun-split-view__content ${this.isOpen ? 'is-open' : ''} ${this.position === 'right' ? 'is-right' : ''}`} ref={main => this.main = main}>
           <slot></slot>
         </main>
       </article >
     );
   }
 
-  @Watch('isOpen')
-  onIsOpenChange(newVal) {
-    if (newVal) {
-      this.nav.classList.add('is-open');
-      this.main.classList.add('is-open');
-    } else {
-      this.nav.classList.remove('is-open');
-      this.main.classList.remove('is-open');
-    }
-  }
-
-  @Watch('position')
-  onPositionChange(newVal) {
-    switch (newVal) {
-      case 'left':
-        this.nav.classList.add('is-left');
-        this.main.classList.add('is-left');
-        this.nav.classList.remove('is-right');
-        this.main.classList.remove('is-right');
-        break;
-      case 'right':
-        this.nav.classList.add('is-right');
-        this.main.classList.add('is-right');
-        this.nav.classList.remove('is-left');
-        this.main.classList.remove('is-left');
-        break;
-    }
+  @Method()
+  async toggleMenu() {
+    return this.isOpen = !this.isOpen;
   }
 
   @Method()
