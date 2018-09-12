@@ -7,6 +7,9 @@
 import '@stencil/core';
 
 
+import {
+  TunNavitem,
+} from './interfaces';
 
 
 export namespace Components {
@@ -14,11 +17,14 @@ export namespace Components {
   interface TunSplitView {
     'close': () => Promise<boolean>;
     'isOpen': boolean;
+    'navItems': TunNavitem[];
     'open': () => Promise<boolean>;
     'position': 'left' | 'right';
+    'toggleMenu': () => Promise<boolean>;
   }
   interface TunSplitViewAttributes extends StencilHTMLAttributes {
     'isOpen'?: boolean;
+    'navItems'?: TunNavitem[];
     'position'?: 'left' | 'right';
   }
 }
